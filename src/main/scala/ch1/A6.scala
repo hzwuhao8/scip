@@ -2,6 +2,12 @@ package ch1
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+/**
+ * 1.6
+ * 1.7
+ * 1.8
+ * 
+ */
 object A6 extends App {
   val log = LoggerFactory.getLogger(A6.getClass())
 
@@ -50,6 +56,9 @@ object A6 extends App {
     }
     newton(x, improve)
   }
+  
+ 
+  
   val x = 27
   log.info("sqrt( {} )={} ", x, sqrt(x))
   log.info("Math.sqrt( {} )={}", x, Math.sqrt(x))
