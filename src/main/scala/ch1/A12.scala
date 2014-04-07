@@ -9,10 +9,10 @@ object A12 extends App {
   val log = LoggerFactory.getLogger(A12.getClass())
 
   def pascal(n: Int): List[Int]={
-    
+    @tailrec
     def pascalnter(n:Int , seq: List[Int]): List[Int]={
       log.debug("n={},seq={}", n , seq)
-    if(n==1){
+    if(n==0){
       seq
    
     }else{
@@ -24,9 +24,9 @@ object A12 extends App {
     }
     }
     
-    pascalnter(n , List(1,1))
+    pascalnter(n , List(1))
   }
-  for(n <- 1 to 5 ){
+  for(n <- 0 to 5 ){
     log.info("\n\n")
 	  log.info("p({})={}", n , pascal(n))
   }
