@@ -28,7 +28,8 @@ object A19 extends App {
   val log = LoggerFactory.getLogger(A19.getClass())
 
   def fib(n: Int): Int = {
-
+    
+	  @tailrec
     def fibInter(a: Int, b: Int, p: Int, q: Int, count: Int): Int = {
       if (count == 0) {
         b
