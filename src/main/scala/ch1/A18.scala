@@ -2,9 +2,10 @@ package ch1
 
 import org.slf4j.LoggerFactory
 import scala.annotation.tailrec
+import scala.util.Random
 
-object A17 extends App {
-  val log = LoggerFactory.getLogger(A17.getClass())
+object A18 extends App {
+  val log = LoggerFactory.getLogger(A18.getClass())
 
   def double(x: Int): Int = x << 1
   def halve(x: Int): Int = x >> 1
@@ -16,21 +17,22 @@ object A17 extends App {
   log.info("isEven(13)={}", isEven(13))
 
   var count = 0
-   
-  def *(a: Int, b: Int): Int = {
+  
+   @tailrec
+  def *(a: Int, b: Int, v: Int): Int = {
     count += 1 
     log.debug("a={},b={}", a, b )
     if (b == 0 || a == 0) {
-      0
+      v
     } else if (b == 1) {
-      a
+      a +v
     } else if (a == 1) {
-      b
+      b +v
     } else {
       if(isEven(a)){
-        *( halve(a), double(b))
+        *( halve(a), double(b) , v )
       }else{
-        *( halve(a-1), double(b)) + b 
+        *( halve(a-1), double(b), v+b) 
       }
        
     }
@@ -38,5 +40,11 @@ object A17 extends App {
   
   val x = 11
   val y = 13
-  log.info(" *({},{})={}", x.toString, y.toString, *(x, y).toString)
+  log.info(" *({},{})={}", x.toString, y.toString, *(x, y,0).toString)
+  
+  val x1 = Random.nextInt( 10000)
+  val y1 = Random.nextInt( 10000)
+  val r1 = *(x1, y1,0)
+  log.info(" *({},{})={} , {}", x1.toString, y1.toString, r1.toString ,  (r1 == x1*y1).toString)
+  log.info("count={}", count)
 }
